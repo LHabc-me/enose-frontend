@@ -1,0 +1,35 @@
+{
+  "name": "web_design",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "serve": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.2.96",
+    "axios": "^1.4.0",
+    "echarts": "^5.4.2",
+    "flex-layout-attribute": "^1.0.3",
+    "nprogress": "^0.2.0",
+    "pinia": "2.0.36",
+    "pinia-plugin-persist": "^1.0.0",
+    "roboto-fontface": "*",
+    "vue": "^3.2.0",
+    "vue-echarts": "^6.5.5",
+    "vue-router": "^4.0.0",
+    "vue-toast-notification": "^3.0",
+    "vuetify": "^3.0.0",
+    "webfontloader": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "sass": "^1.62.1",
+    "vite": "^4.2.0",
+    "vite-plugin-pages": "^0.29.0",
+    "vite-plugin-vue-layouts": "^0.8.0",
+    "vite-plugin-vuetify": "^1.0.0"
+  }
+}
