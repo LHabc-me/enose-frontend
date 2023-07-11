@@ -42,7 +42,7 @@ export default defineConfig({
     cors: true,
     proxy: {
       '/api': {
-        target: 'http://www.kina0630.xyz',
+        target: '服务器地址',
         changeOrigin: true,
         // rewrite: path => path.replace(/^\/api/, '')
       },

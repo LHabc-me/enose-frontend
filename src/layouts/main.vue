@@ -115,29 +115,22 @@ const lists = computed(() => {
         {
           text: '开始实验',
           icon: 'mdi-clock',
-          to: '/recent'
+          to: '/experiment/new'
         },
         {
-          text: '实验记录',
+          text: '历史实验',
           icon: 'mdi-star-box',
-          to: '/collect'
+          to: '/experiment/history'
         },
-        {
-          text: '实验报告',
-          icon: 'mdi-account',
-          to: '/profile'
-        },
+
       ]
     },
     {
       title: '设备相关', items: [
         {
           text: '设备列表',
-          to: '/author/workspace'
-        },
-        {
-          text: '设备管理',
-          to: '/author/workspace'
+          icon: 'mdi-usb',
+          to: '/device/list'
         },
       ]
     },
@@ -145,11 +138,8 @@ const lists = computed(() => {
       title: '用户相关', items: [
         {
           text: '用户列表',
-          to: '/author/workspace'
-        },
-        {
-          text: '用户管理',
-          to: '/author/workspace'
+          icon: 'mdi-account',
+          to: '/user/list'
         },
       ]
     }
