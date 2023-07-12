@@ -3,7 +3,9 @@
     <VAppBar class="elevation-3">
       <template #prepend>
         <VBtn icon="mdi-menu" @click="menuBtnClick"></VBtn>
-        <span>电子鼻实验平台</span>
+        <span>
+          电子鼻实验平台
+        </span>
       </template>
       <template #append>
         <VBtn :icon="theme.name === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
@@ -52,8 +54,7 @@
       </VList>
     </VNavigationDrawer>
     <VMain>
-      <router-view class="pa-10"
-                   v-slot="{Component}">
+      <router-view v-slot="{Component}">
         <keep-alive>
           <component :is="Component"/>
         </keep-alive>
@@ -90,13 +91,13 @@ const user = computed(() => {
       }
     ]
   } else {
-    user.push({
+    user = [{
       name: '登录',
       icon: 'mdi-login',
       onClick: () => {
         router.push('/login')
       }
-    })
+    }]
   }
   return user
 })

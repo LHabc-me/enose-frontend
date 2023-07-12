@@ -9,11 +9,7 @@
 </template>
 
 <script setup>
-import {useTheme} from "@/store/modules/theme"
+import {useTheme} from '@/store/modules/theme'
 
 const theme = useTheme()
-
 </script>
-
-<style lang="less">
-</style>
