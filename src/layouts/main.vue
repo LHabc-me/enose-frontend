@@ -86,7 +86,7 @@ const user = computed(() => {
         icon: 'mdi-logout',
         onClick: () => {
           userStore.isLogin = false
-          router.push('/login')
+          router.push('/user/login')
         }
       }
     ]
@@ -95,7 +95,7 @@ const user = computed(() => {
       name: '登录',
       icon: 'mdi-login',
       onClick: () => {
-        router.push('/login')
+        router.push('/user/login')
       }
     }]
   }

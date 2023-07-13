@@ -24,7 +24,7 @@ router.beforeEach((to, from) => {
       return true
     }
     if (!user.isLogin) {
-      return '/login'
+      return '/user/login'
     }
   }
 })

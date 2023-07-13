@@ -46,7 +46,7 @@
 
                 <router-link self="right"
                              class="ms-2 mb-1"
-                             to="/reset-password">
+                             to="/user/reset-password">
                   忘记密码？点我找回
                 </router-link>
               </div>
@@ -65,7 +65,7 @@
                  layout="row center-center">
               <span>
                 没有账号？
-                <router-link to="/register">注册</router-link>
+                <router-link to="/user/register">注册</router-link>
                 或
                 <router-link to="/" @click="loginAsGuest">以游客身份登录</router-link>
               </span>

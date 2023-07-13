@@ -4,6 +4,7 @@
     <VCard class="pa-4 pt-7"
            width="448">
       <VCardItem layout="column center-center">
+
         <VCardTitle class="font-weight-semibold text-2xl text-uppercase">
           电子鼻实验平台
         </VCardTitle>
@@ -14,7 +15,7 @@
           欢迎来到电子鼻实验平台
         </h5>
         <p class="mb-0">
-          注册
+          重置密码
         </p>
       </VCardText>
 
@@ -30,14 +31,8 @@
                           color="primary"
               />
               <VTextField
-                v-model="form.username"
-                label="用户名"
-                :rules="[rules.required, rules.userNameLength]"
-                color="primary"
-              />
-              <VTextField
                 v-model="form.password"
-                label="密码"
+                label="新密码"
                 :type="isPasswordVisible ? 'text' : 'password'"
                 :append-inner-icon="isPasswordVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
                 @click:append-inner="isPasswordVisible = !isPasswordVisible"
@@ -73,21 +68,31 @@
 
               <div class="mt-1 mb-4"
                    layout="row">
+                <VCheckbox self="left"
+                           v-model="form.remember"
+                           label="记住我"
+                           color="primary"
+                />
                 <span self="right">
-                  已有账号？
-                  <router-link self="right"
-                               to="/login">
-                    登录
-                  </router-link>
-                </span>
+                <router-link self="right"
+                             to="/user/login"
+                             class="mr-2">
+                  登录
+                </router-link>
+                <router-link self="right"
+                             to="/user/register">
+                  注册
+                </router-link>
+              </span>
               </div>
 
               <VBtn :block="true"
                     type="submit"
-                    @click="register"
+                    @click="resetpwd"
                     color="primary"
-                    :loading="loading">
-                注册
+                    :loading="loading"
+              >
+                重置密码
               </VBtn>
             </VCol>
           </VRow>
@@ -102,7 +107,7 @@
 
 <script setup>
 import {computed, ref} from "vue";
-import {post} from "@/net";
+import {get, post} from "@/net";
 import {useMessage} from "@/store/modules/message";
 import {useRouter} from "vue-router";
 import {useUser} from "@/store/modules/user";
@@ -114,10 +119,10 @@ const user = useUser()
 
 const form = ref({
   email: '',
-  username: '',
   password: '',
   "repeat-password": '',
   "verification-code": '',
+  remember: false,
 })
 const isPasswordVisible = ref(false)
 const resendVerificationCodeInterval = ref(0)
@@ -152,9 +157,8 @@ function resendVerificationCode() {
 
 const loading = ref(false)
 
-function register() {
+function resetpwd() {
   if (rules.email(form.value.email) !== true ||
-    rules.userNameLength(form.value.username) !== true ||
     rules.pwdLength(form.value.password) !== true ||
     rules.pwdLength(form.value['repeat-password']) !== true ||
     rules.samePwd(form.value['repeat-password'])(form.value.password) !== true ||
@@ -166,20 +170,19 @@ function register() {
   }
   loading.value = true
 
-  post('注册接口', {
+  post('重置密码接口', {
     email: form.value.email,
-    username: form.value.username,
     password: form.value.password,
     "verification-code": form.value['verification-code'],
   }).then(({data}) => {
     if (data.success) {
-      message.success('注册成功')
+      message.success('重置密码成功')
       router.push('/login')
     } else {
-      message.error('注册失败')
+      message.error('重置密码失败')
     }
   }).catch(() => {
-    message.error('注册失败')
+    message.error('重置密码失败')
   }).finally(() => {
     loading.value = false
   })
