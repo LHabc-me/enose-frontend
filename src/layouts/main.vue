@@ -78,7 +78,7 @@ const message = useMessage()
 const showMenu = ref(false)
 
 const user = computed(() => {
-  let user = []
+  let user
   if (userStore.isLogin) {
     user = [
       {
@@ -105,14 +105,16 @@ const user = computed(() => {
 const lists = computed(() => {
   return [
     {
-      items: [{
-        text: '首页',
-        icon: 'mdi-home',
-        to: '/'
-      }]
+      items: [
+        {
+          text: '首页',
+          icon: 'mdi-home',
+          to: '/'
+        }]
     },
     {
-      title: '实验相关', items: [
+      title: '实验相关',
+      items: [
         {
           text: '开始实验',
           icon: 'mdi-clock',
@@ -127,7 +129,8 @@ const lists = computed(() => {
       ]
     },
     {
-      title: '设备相关', items: [
+      title: '设备相关',
+      items: [
         {
           text: '设备列表',
           icon: 'mdi-usb',
@@ -136,7 +139,8 @@ const lists = computed(() => {
       ]
     },
     {
-      title: '用户相关', items: [
+      title: '用户相关',
+      items: [
         {
           text: '用户列表',
           icon: 'mdi-account',
