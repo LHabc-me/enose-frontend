@@ -142,7 +142,7 @@ function resendVerificationCode() {
     }
   }, 1000)
 
-  post('验证码接口', {
+  post('/api/user/verification-code', {
     email: form.value.email,
   }).then(({data}) => {
     console.log(data)
@@ -170,7 +170,7 @@ function resetpwd() {
   }
   loading.value = true
 
-  post('重置密码接口', {
+  post('/api/user/reset-password', {
     email: form.value.email,
     password: form.value.password,
     "verification-code": form.value['verification-code'],

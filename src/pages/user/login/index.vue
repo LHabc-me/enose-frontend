@@ -116,7 +116,7 @@ function login() {
     return
   }
   loading.value = true
-  post('登录接口', {
+  post('/api/user/login', {
     email: form.value.email,
     password: form.value.password
   }).then(({data}) => {

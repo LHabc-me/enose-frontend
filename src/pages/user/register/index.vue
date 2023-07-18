@@ -137,7 +137,7 @@ function resendVerificationCode() {
     }
   }, 1000)
 
-  post('验证码接口', {
+  post('/api/user/verification-code', {
     email: form.value.email,
   }).then(({data}) => {
     console.log(data)
@@ -166,7 +166,7 @@ function register() {
   }
   loading.value = true
 
-  post('注册接口', {
+  post('/api/user/register', {
     email: form.value.email,
     username: form.value.username,
     password: form.value.password,
