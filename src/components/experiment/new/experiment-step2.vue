@@ -7,12 +7,10 @@
             <VRow v-for="(item, index) in algorithms"
                   :key="index"
                   md="4">
-
               <div class="text-h3 flex-grow-1 text-center d-flex align-center justify-center"
                    :class="{'bg-primary' : item.name === algorithmSelected}" style="height: 150px">
-                {{ item.name }}
+                {{ item.name }}简介
               </div>
-
             </VRow>
           </div>
         </div>
@@ -28,7 +26,8 @@
                      :items="algorithms.map(item => item.name)"
                      variant="outlined"
                      color="primary"
-                     v-model="algorithmSelected">
+                     v-model="algorithmSelected"
+            >
             </VSelect>
             <div class="h-100 border-md rounded-lg">
               参数设置
@@ -48,7 +47,7 @@ const algorithms = ref([
   {id: 2, name: '算法2', description: '算法2描述'},
   {id: 3, name: '算法3', description: '算法3描述'}])
 const experiment = useNewExperiment()
-const algorithmSelected = ref(null)
+const algorithmSelected = ref(algorithms.value[0].name)
 watch(algorithmSelected, (newVal) => {
   experiment.algorithm = newVal
 })

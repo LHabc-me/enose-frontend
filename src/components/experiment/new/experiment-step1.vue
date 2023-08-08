@@ -10,7 +10,7 @@
         </VVirtualScroll>
       </div>
       <div v-else class="text-center h-100 d-flex align-center justify-center">
-        在这里预览文件<br>
+        在此预览文件<br>
         (暂未上传)
       </div>
     </div>
@@ -22,7 +22,11 @@
       <div class="h-75 pa-10">
         <div class="h-100 border-dashed rounded-xl"
              style="border: #a0a0a0 solid 2px;"
-             layout="column spread-center">
+             layout="column spread-center"
+             @drop.prevent="drop"
+             @dragleave.prevent=""
+             @dragenter.prevent=""
+             @dragover.prevent="">
           <p>
             上传实验数据，支持的文件格式有：Excel
           </p>
@@ -46,24 +50,40 @@
 import {useNewExperiment} from "@/store/modules/new-experiment";
 import {ref} from "vue";
 import * as XLSX from "xlsx";
+import {useMessage} from "@/store/modules/message";
 
 const experiment = useNewExperiment()
+const message = useMessage()
 
 const uploadDataInput = ref(null)
 
-
-function onuploadDataInputChange(event) {
-  const file = event.target.files[0]
+function uploadFile(file) {
   experiment.data = file
   const fileReader = new FileReader()
   fileReader.onload = (ev) => {
-    const data = ev.target.result
-    const workbook = XLSX.read(data, {
-      type: 'binary'
-    })
-    const wsname = workbook.SheetNames[0] //取第一张表
-    experiment.dataJSON = XLSX.utils.sheet_to_json(workbook.Sheets[wsname]) //生成json表格内容
+    try {
+      const data = ev.target.result
+      const workbook = XLSX.read(data, {
+        type: 'binary'
+      })
+      const wsname = workbook.SheetNames[0] //取第一张表
+      experiment.dataJSON = XLSX.utils.sheet_to_json(workbook.Sheets[wsname]) //生成json表格内容
+    } catch {
+      message.error('不支持的文件格式')
+    }
   }
   fileReader.readAsBinaryString(file)
+
+}
+
+function onuploadDataInputChange(event) {
+  const file = event.target.files[0]
+  uploadFile(file)
+}
+
+
+function drop(e) {
+  const file = e.dataTransfer.files[0]
+  uploadFile(file)
 }
 </script>
