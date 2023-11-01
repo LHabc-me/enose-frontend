@@ -2,8 +2,7 @@
   <div class="h-100" layout="row center-center" style="padding: 70px">
     <div class="h-100 w-50">
       <div v-if="experiment.dataJSON.length !== 0">
-        <VVirtualScroll :height="500"
-                        :items="experiment.dataJSON">
+        <VVirtualScroll :height="500" :items="experiment.dataJSON">
           <template v-slot:default="{ item }">
             <pre> {{ item }} </pre>
           </template>
@@ -16,30 +15,21 @@
     </div>
     <div class="h-100 w-50">
       <div class="h-25 mx-auto text-center d-flex align-center justify-center"
-           style="font-family: 方正卡通简体,serif; font-size:3rem">
+        style="font-family: 方正卡通简体,serif; font-size:3rem">
         第一步：上传实验数据<br>
       </div>
       <div class="h-75 pa-10">
-        <div class="h-100 border-dashed rounded-xl"
-             style="border: #a0a0a0 solid 2px;"
-             layout="column spread-center"
-             @drop.prevent="drop"
-             @dragleave.prevent=""
-             @dragenter.prevent=""
-             @dragover.prevent="">
+        <div class="h-100 border-dashed rounded-xl" style="border: #a0a0a0 solid 2px;" layout="column spread-center"
+          @drop.prevent="drop" @dragleave.prevent="" @dragenter.prevent="" @dragover.prevent="">
           <p>
             上传实验数据，支持的文件格式有：Excel
           </p>
-          <VBtn color="primary" class="mx-auto w-75 rounded-xl"
-                size="x-large"
-                @click="uploadDataInput.click()">
+          <VBtn color="primary" class="mx-auto w-75 rounded-xl" size="x-large" @click="uploadDataInput.click()">
             上传文件
           </VBtn>
-          <input ref="uploadDataInput"
-                 type="file"
-                 class="d-none"
-                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                 @change="onuploadDataInputChange"/>
+          <input ref="uploadDataInput" type="file" class="d-none"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            @change="onuploadDataInputChange" />
         </div>
       </div>
     </div>
@@ -47,10 +37,10 @@
 </template>
 
 <script setup>
-import {useNewExperiment} from "@/store/modules/new-experiment";
-import {ref} from "vue";
+import { useNewExperiment } from "@/store/modules/new-experiment";
+import { ref } from "vue";
 import * as XLSX from "xlsx";
-import {useMessage} from "@/store/modules/message";
+import { useMessage } from "@/store/modules/message";
 
 const experiment = useNewExperiment()
 const message = useMessage()
@@ -73,7 +63,6 @@ function uploadFile(file) {
     }
   }
   fileReader.readAsBinaryString(file)
-
 }
 
 function onuploadDataInputChange(event) {

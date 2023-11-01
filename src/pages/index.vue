@@ -27,8 +27,11 @@
   <!--      由于健康人和糖尿病患者呼出气体成分和含量有差异，因此新兴的无创检测手段———呼气分析，为糖尿病的诊断与生理代谢监控开辟了新途径。-->
   <!--    </div>-->
   <!--  </div>-->
-  <div class="img1" :class="{dark: theme.name === 'dark'}"></div>
-  <div class="img2" :class="{dark: theme.name === 'dark'}">
+  <div class="img1" :class="{dark: theme.name === 'dark'}"
+       :style="{backgroundImage: `url(${bg1})`}"
+  ></div>
+  <div class="img2" :class="{dark: theme.name === 'dark'}"
+       :style="{backgroundImage: `url(${bg2})`}">
     <VCarousel :cycle="true"
                interval="5000"
                :show-arrows="false"
@@ -44,10 +47,10 @@
           </VRow>
           <VRow>
             <VCol>
-              <VImg src="homepage/1.png" class="float-right" :width="700"></VImg>
+              <VImg :src="img1" class="float-right" :width="700"></VImg>
             </VCol>
             <VCol>
-              <VImg src="homepage/2.png" class="float-left" :width="700" style="background: white"></VImg>
+              <VImg :src="img2" class="float-left" :width="700" style="background: white"></VImg>
               <!--            #e6e6e3-->
             </VCol>
           </VRow>
@@ -63,7 +66,7 @@
               </div>
             </VCol>
             <VCol>
-              <VImg src="homepage/3.png" :width="700"></VImg>
+              <VImg :src="img3" :width="700"></VImg>
             </VCol>
           </VRow>
         </div>
@@ -72,7 +75,7 @@
         <div>
           <VRow>
             <VCol>
-              <VImg src="homepage/4.png" :width="700" class="float-right"></VImg>
+              <VImg :src="img4" :width="700" class="float-right"></VImg>
             </VCol>
             <VCol class="d-flex align-center" style="height: 500px;">
               <div style="width: 500px;font-size: 2rem">
@@ -89,6 +92,13 @@
 </template>
 <script setup>
 import {useTheme} from "@/store/modules/theme";
+import img1 from '@/assets/images/homepage/1.png'
+import img2 from '@/assets/images/homepage/2.png'
+import img3 from '@/assets/images/homepage/3.png'
+import img4 from '@/assets/images/homepage/4.png'
+import bg1 from '@/assets/images/homepage/bg1.png'
+import bg2 from '@/assets/images/homepage/bg2.png'
+import bg3 from '@/assets/images/homepage/bg3.png'
 
 const theme = useTheme()
 </script>
@@ -96,19 +106,16 @@ const theme = useTheme()
 <style lang="scss" scoped>
 .img1 {
   height: 100vh;
-  background-image: url('homepage/bg1.png');
   background-size: cover;
 }
 
 .img2 {
   height: 100vh;
-  background-image: url('homepage/bg2.png');
   background-size: cover;
 }
 
 .img3 {
   height: 100vh;
-  background-image: url('homepage/bg3.png');
   background-size: cover;
 }
 
